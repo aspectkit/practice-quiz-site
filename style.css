@@ -1,0 +1,73 @@
+#movePageButtons {
+    font-family: Tangerine, sans-serif;
+    float: left;
+    padding-left: 30px;
+    padding-top: 20px;
+    font-size: 50px;
+    text-decoration: none;
+}
+
+#movePageButtons:hover {
+    font-weight: bolder;
+}
+
+.time {
+    padding-right: 70px;
+    font-family: Tangerine, sans-serif;
+    font-size: 50px;
+    padding-top: 20px;
+    text-align: end;
+}
+
+#webpage-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+#webpage-subheader {
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 50px;
+}
+
+.start-button {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    text-align: center;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 10px;
+    background-color: blueviolet;
+    background-image: linear-gradient(to top left, blue, blueviolet, violet);
+    font-size: 70px;
+    cursor: pointer;
+}
+
+.start-button:hover{
+    background-color: purple;
+    background-image: none;
+}
+
+#question-option {
+    list-style-type: none;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+#option-button {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    background-color: blueviolet;
+    background-image: linear-gradient(to top left, blue, blueviolet, violet);
+    border-radius: 10px;
+    font-size: 70px;
+    /* text-align: center; */
+    cursor: pointer;
+    
+}
+
+#option-button:hover{
+    background-color: purple;
+    background-image: none;
+}
