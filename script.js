@@ -7,6 +7,7 @@ var secondsLeft = 60;
 var currentQuestion = 0;
 var score = 0;
 var validated = false;
+
 var pageMoveEl = document.createElement("a");
 var correctOrIncorrectText = document.createElement("h3");
 var question = document.createElement("h3");
@@ -18,9 +19,13 @@ var highscoreInput = document.createElement("input");
 var highscoreSubmit = document.createElement("input");
 var highscoreText = document.createElement("h1");
 var highscoreList = document.createElement("ol");
+var backButton = document.createElement("input");
 
+var userScores = JSON.parse(localStorage.getItem("highscores"));
 
-
+if (userScores === null){
+    userScores = {};
+}
 
 var questions = {
     question1: "JavaScript arrays can be used to store:",
@@ -87,10 +92,20 @@ function showEndScreen(){
     highscoreSubmit.style.textAlign = "center";
     highscoreSubmit.style.marginLeft = "auto";
     highscoreSubmit.style.marginRight = "auto";
+    highscoreSubmit.style.marginBottom = "20px";
     highscoreSubmit.style.display = "block";
     highscoreSubmit.addEventListener("click", validateUser);
     highscoreSubmit.addEventListener("click", saveHighScore);
+    highscoreSubmit.addEventListener("click", goBackToMain);
     document.body.appendChild(highscoreSubmit);
+}
+
+function goBackToMain(){
+    backButton.setAttribute("type", "button");
+    backButton.setAttribute("value", "GO BACK");
+    backButton.setAttribute("class", "start-button");
+    backButton.addEventListener("click", showMainPage);
+    document.body.appendChild(backButton);
 }
 
 function validateUser(){
@@ -108,8 +123,7 @@ function saveHighScore(){
     var userInitials = highscoreInput.value;
 
     if (validated){
-        userScores = window.localStorage.getItem("highscores");
-        userScores = JSON.parse(userScores);
+        
         userScores[userInitials] = score;
         localStorage.setItem("highscores", JSON.stringify(userScores));
     }
