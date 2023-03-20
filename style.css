@@ -71,3 +71,11 @@
     background-color: purple;
     background-image: none;
 }
+
+
+#bottom {
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+}
