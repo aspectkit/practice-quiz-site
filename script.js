@@ -7,6 +7,7 @@ var secondsLeft = 60;
 var currentQuestion = 0;
 var score = 0;
 var validated = false;
+var pageMoveEl = document.createElement("a");
 var correctOrIncorrectText = document.createElement("h3");
 var question = document.createElement("h3");
 var optionsList = document.createElement("ul");
@@ -18,7 +19,8 @@ var highscoreSubmit = document.createElement("input");
 var highscoreText = document.createElement("h1");
 var highscoreList = document.createElement("ol");
 
-var userScores = {};
+
+
 
 var questions = {
     question1: "JavaScript arrays can be used to store:",
@@ -106,6 +108,8 @@ function saveHighScore(){
     var userInitials = highscoreInput.value;
 
     if (validated){
+        userScores = window.localStorage.getItem("highscores");
+        userScores = JSON.parse(userScores);
         userScores[userInitials] = score;
         localStorage.setItem("highscores", JSON.stringify(userScores));
     }
@@ -204,6 +208,7 @@ function checkAnswer(event){
     }
 }
 
+
 if (document.URL.includes("index.html")){
     optionsList.setAttribute("id", "options-list");
     correctOrIncorrectText.setAttribute("id", "bottom");
@@ -213,8 +218,34 @@ if (document.URL.includes("index.html")){
 }
 
 if (document.URL.includes("highscores.html")){
+    pageMoveEl.setAttribute("id", "movePageButtons")
+    pageMoveEl.setAttribute("href", "index.html");
+    pageMoveEl.textContent = "Go Back";
+    document.body.appendChild(pageMoveEl);
+
+
     highscoreText.style.textAlign = "center";
     highscoreText.textContent = "High Scores"
+    // highscoreText.style.float = "left";
+    highscoreText.style.paddingBottom = "20px"
     document.body.appendChild(highscoreText);
+
+    var highscoreObject = window.localStorage.getItem("highscores");
+    highscoreObject = JSON.parse(highscoreObject);
+
+    for (var key in highscoreObject){
+        if (highscoreObject.hasOwnProperty(key)){
+            console.log("hello")
+            var highscoreLi = document.createElement("li");
+            highscoreLi.style.textAlign = "center";
+            highscoreLi.style.fontSize = "30px";
+            highscoreLi.style.paddingRight = "50px";
+            highscoreLi.textContent = key + ": " + highscoreObject[key];
+            highscoreList.appendChild(highscoreLi);
+        }
+    }
+    highscoreList.style.textAlign = "center";
+    highscoreList.style.listStyle = "none";
+    document.body.appendChild(highscoreList)
 }
 
