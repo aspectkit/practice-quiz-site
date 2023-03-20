@@ -1,3 +1,4 @@
+/* style for the buttons that let the user move between pages */
 #movePageButtons {
     font-family: Tangerine, sans-serif;
     /* float: right; */
@@ -7,11 +8,11 @@
     text-decoration: none;
     padding-bottom: 30px;
 }
-
+/* hover detail for buttons that let user move between pages */
 #movePageButtons:hover {
     font-weight: bolder;
 }
-
+/* styling for the time text */
 .time {
     padding-right: 70px;
     font-family: Tangerine, sans-serif;
@@ -19,7 +20,7 @@
     padding-top: 20px;
     text-align: end;
 }
-
+/* styling for the webpage title and subheader */
 #webpage-title {
     text-align: center;
     font-weight: bold;
@@ -31,6 +32,7 @@
     padding-bottom: 50px;
 }
 
+/* styling for the start button */
 .start-button {
     color: white;
     text-shadow: 1px 1px 1px black;
@@ -49,7 +51,7 @@
     background-color: purple;
     background-image: none;
 }
-
+/* styling for the options presented to the user when answering a question */
 #question-option {
     list-style-type: none;
     padding-bottom: 20px;
@@ -73,7 +75,7 @@
     background-image: none;
 }
 
-
+/* styling for the text to tell the user if they are correct or not */
 #bottom {
     position: fixed;
     bottom: 0;

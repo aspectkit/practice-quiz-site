@@ -21,12 +21,14 @@ var highscoreText = document.createElement("h1");
 var highscoreList = document.createElement("ol");
 var backButton = document.createElement("input");
 
+// gets the object from the local storage. if it does not exist it will create an empty object
 var userScores = JSON.parse(localStorage.getItem("highscores"));
 
 if (userScores === null){
     userScores = {};
 }
 
+// objects to store the questions, the multiple choices, and the answers to those questions
 var questions = {
     question1: "JavaScript arrays can be used to store:",
     question2: "You can set the display attribute in css to:",
@@ -51,6 +53,7 @@ var answers = {
     answer5: "for loop"
 };
 
+// functions that allow switching between pages
 function showHighScores(){
     window.location.href = "highscores.html"
 }
@@ -59,6 +62,7 @@ function showMainPage(){
     window.location.href = "index.html"
 }
 
+// when the timer is up or user is at the end of quiz, an end screen is shown for the user to add their score to highscores
 function showEndScreen(){
     score = secondsLeft;
     // timeEl.textContent = "";
@@ -100,6 +104,7 @@ function showEndScreen(){
     document.body.appendChild(highscoreSubmit);
 }
 
+// button on end screen that allows user to go back to the main page
 function goBackToMain(){
     backButton.setAttribute("type", "button");
     backButton.setAttribute("value", "GO BACK");
@@ -108,6 +113,7 @@ function goBackToMain(){
     document.body.appendChild(backButton);
 }
 
+// checks to see if user input isnt empty for highscore
 function validateUser(){
     var userInitials = highscoreInput.value;
 
@@ -119,6 +125,7 @@ function validateUser(){
     }
 }
 
+// if the input isnt empty, the highscore will be saved to local storage
 function saveHighScore(){
     var userInitials = highscoreInput.value;
 
@@ -130,6 +137,7 @@ function saveHighScore(){
     
 }
 
+// when start button is pressed get rid of these elements
 function detachElements() {  
     
     startEl.style.display = "none";
@@ -138,7 +146,7 @@ function detachElements() {
 }
 
 
-
+// timer function to count down 60 seconds when the user presses start
 function setTime(){
     var timerInterval = setInterval(function() {
         if (secondsLeft <= 0 || currentQuestion > 5){
@@ -152,6 +160,7 @@ function setTime(){
     }, 1000);
 }
 
+// function to start the quiz and display the correct question. if at the end, the end screen function is called
 function startQuiz(){
     console.log(currentQuestion);
     if (currentQuestion === 0){
@@ -176,6 +185,7 @@ function startQuiz(){
     
 }
 
+// this function displays the correct question as well as the options for the user to select
 function displayQuestion(questions, options, answers){
     question.style.textAlign = "center";
     question.style.fontSize = "50px";
@@ -204,6 +214,7 @@ function displayQuestion(questions, options, answers){
     document.body.appendChild(optionsList);
 }
 
+// once an option is selected by the user this function checks if that option is correct or not displays that information and then moves to the next question
 function checkAnswer(event){
     userAnswer = event.currentTarget.userAnswer;
     correctAnswer = event.currentTarget.correctAnswer;
@@ -222,7 +233,7 @@ function checkAnswer(event){
     }
 }
 
-
+// this code is executed if the user is on the main page that starts up the quiz
 if (document.URL.includes("index.html")){
     optionsList.setAttribute("id", "options-list");
     correctOrIncorrectText.setAttribute("id", "bottom");
@@ -231,6 +242,7 @@ if (document.URL.includes("index.html")){
     startEl.addEventListener("click", startQuiz);
 }
 
+// this code is executed if the user is on the highscores page which lists the users and their scores from local storage.
 if (document.URL.includes("highscores.html")){
     pageMoveEl.setAttribute("id", "movePageButtons")
     pageMoveEl.setAttribute("href", "index.html");
