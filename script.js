@@ -2,12 +2,10 @@ var timeEl = document.querySelector(".time");
 var startEl = document.querySelector(".start-button");
 var titleEl = document.getElementById("webpage-title");
 var subEl = document.getElementById("webpage-subheader");
-
 var secondsLeft = 60;
 var currentQuestion = 0;
 var score = 0;
 var validated = false;
-
 var pageMoveEl = document.createElement("a");
 var correctOrIncorrectText = document.createElement("h3");
 var question = document.createElement("h3");
@@ -36,7 +34,6 @@ var questions = {
     question4: "=== is used for:",
     question5: "You use this data structure to take an action a specific number of times that you know: "
 };
-
 var options = {
     question1: ["booleans", "numbers", "strings", "all of the above"],
     question2: ["none", "block", "flex", "all of the above"],
@@ -44,7 +41,6 @@ var options = {
     question4: ["assignment", "equality", "strict-equality", "none of the above"],
     question5: ["for loop", "while loop", "if statement", "queue"]
 };
-
 var answers = {
     answer1: "all of the above",
     answer2: "all of the above",
@@ -57,7 +53,6 @@ var answers = {
 function showHighScores(){
     window.location.href = "highscores.html"
 }
-
 function showMainPage(){
     window.location.href = "index.html"
 }
@@ -70,18 +65,15 @@ function showEndScreen(){
     // question.textContent = "";
     optionsList.style.display = "none";
     correctOrIncorrectText.style.display = "none";
-
     finishText.style.fontWeight = "bolder";
     finishText.style.textAlign = "center";
     finishText.style.fontSize = "50px"
     finishText.textContent = "All Done!"
-
     scoreText.style.textAlign = "center";
     scoreText.style.fontSize = "30px";
     scoreText.textContent = "Your final score is " + score;
     document.body.appendChild(finishText);
     document.body.appendChild(scoreText);
-
     highscoreInput.setAttribute("type", "text");
     highscoreInput.setAttribute("id", "hs");
     highscoreInput.setAttribute("name", "hs");
@@ -90,7 +82,6 @@ function showEndScreen(){
     highscoreForm.style.fontSize = "30px";
     highscoreForm.appendChild(highscoreInput);
     document.body.appendChild(highscoreForm);
-
     highscoreSubmit.setAttribute("type", "submit");
     highscoreSubmit.setAttribute("value", "Submit");
     highscoreSubmit.style.textAlign = "center";
@@ -134,16 +125,17 @@ function saveHighScore(){
         userScores[userInitials] = score;
         localStorage.setItem("highscores", JSON.stringify(userScores));
     }
-    
+
 }
 
 // when start button is pressed get rid of these elements
 function detachElements() {  
-    
+
     startEl.style.display = "none";
     titleEl.style.display = "none";
     subEl.style.display = "none";
 }
+
 
 
 // timer function to count down 60 seconds when the user presses start
@@ -155,7 +147,6 @@ function setTime(){
         }
         secondsLeft--;
         timeEl.textContent = "Time:  " + secondsLeft;
-
         
     }, 1000);
 }
@@ -182,7 +173,7 @@ function startQuiz(){
         currentQuestion = 6;
         showEndScreen();
     }
-    
+
 }
 
 // this function displays the correct question as well as the options for the user to select
@@ -191,12 +182,10 @@ function displayQuestion(questions, options, answers){
     question.style.fontSize = "50px";
     question.textContent = questions;
     document.body.appendChild(question);
-
     var list = document.querySelectorAll("#options-list li");
     for (var i=0; liEl = list[i]; i++){
         liEl.parentNode.removeChild(liEl);
     }
-
     // var op1 = document.createElement("li");
     // var b1 = document.createElement("button");
     for (var i = 0; i < 4; i++){
@@ -218,7 +207,6 @@ function displayQuestion(questions, options, answers){
 function checkAnswer(event){
     userAnswer = event.currentTarget.userAnswer;
     correctAnswer = event.currentTarget.correctAnswer;
-
     if (userAnswer !== correctAnswer){
         secondsLeft -= 10;
         
@@ -243,25 +231,19 @@ if (document.URL.includes("index.html")){
     startEl.addEventListener("click", startQuiz);
 }
 
-
-
 // this code is executed if the user is on the highscores page which lists the users and their scores from local storage.
 if (document.URL.includes("highscores.html")){
     pageMoveEl.setAttribute("id", "movePageButtons")
     pageMoveEl.setAttribute("href", "index.html");
     pageMoveEl.textContent = "Go Back";
     document.body.appendChild(pageMoveEl);
-
-
     highscoreText.style.textAlign = "center";
     highscoreText.textContent = "High Scores"
     // highscoreText.style.float = "left";
     highscoreText.style.paddingBottom = "20px"
     document.body.appendChild(highscoreText);
-
     var highscoreObject = window.localStorage.getItem("highscores");
     highscoreObject = JSON.parse(highscoreObject);
-
     for (var key in highscoreObject){
         if (highscoreObject.hasOwnProperty(key)){
             console.log("hello")
@@ -277,4 +259,3 @@ if (document.URL.includes("highscores.html")){
     highscoreList.style.listStyle = "none";
     document.body.appendChild(highscoreList)
 }
-
