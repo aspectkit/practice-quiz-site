@@ -243,7 +243,7 @@ if (document.URL.includes("index.html") || document.URL.includes("https://kitdhi
     startEl.addEventListener("click", startQuiz);
 }
 
-if (window.location.href.indexOf("practice") > -1){
+if (window.location.href.indexOf("practice") > -1 && !document.URL.includes("highscores.html")){
     optionsList.setAttribute("id", "options-list");
     correctOrIncorrectText.setAttribute("id", "bottom");
     startEl.addEventListener("click", setTime);
