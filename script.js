@@ -233,8 +233,17 @@ function checkAnswer(event){
     }
 }
 
+
 // this code is executed if the user is on the main page that starts up the quiz
 if (document.URL.includes("index.html") || document.URL.includes("https://kitdhing.github.io/practice-quiz-site/")){
+    optionsList.setAttribute("id", "options-list");
+    correctOrIncorrectText.setAttribute("id", "bottom");
+    startEl.addEventListener("click", setTime);
+    startEl.addEventListener("click", detachElements);
+    startEl.addEventListener("click", startQuiz);
+}
+
+if (window.location.href.indexOf("practice") > -1){
     optionsList.setAttribute("id", "options-list");
     correctOrIncorrectText.setAttribute("id", "bottom");
     startEl.addEventListener("click", setTime);
