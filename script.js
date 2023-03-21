@@ -60,6 +60,9 @@ function showMainPage(){
 // when the timer is up or user is at the end of quiz, an end screen is shown for the user to add their score to highscores
 function showEndScreen(){
     score = secondsLeft;
+    if (score < 0) {
+        score = 0;   
+    }
     // timeEl.textContent = "";
     question.style.display = "none";
     // question.textContent = "";
